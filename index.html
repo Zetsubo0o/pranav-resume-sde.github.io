@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pranav Kumar — Software Engineer</title>
-<meta name="description" content="Full-Stack Software Engineer · Java · Spring Boot · Angular · LTM">
+<meta name="description" content="Full-Stack Software Engineer · Java · Spring Boot · Angular · LTIMindtree">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -68,31 +68,30 @@ nav.scrolled{padding:11px 0;background:rgba(3,7,18,.88);backdrop-filter:blur(18p
 @keyframes float{0%{transform:translate(0,0) scale(1)}100%{transform:translate(25px,18px) scale(1.04)}}
 .hero-layout{max-width:1160px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;position:relative;z-index:1}
 @media(max-width:1024px){.hero-layout{grid-template-columns:1fr}}
-.badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:var(--cyan);background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.22);padding:6px 14px;border-radius:99px;margin-bottom:22px;animation:fadeUp .6s cubic-bezier(.16,1,.3,1) both}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:var(--cyan);background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.22);padding:6px 14px;border-radius:99px;margin-bottom:22px;}
 .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
-h1.name{font-family:var(--head);font-size:clamp(2.8rem,5.5vw,4.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:18px;animation:fadeUp .6s .1s cubic-bezier(.16,1,.3,1) both}
-.role-line{display:flex;align-items:center;flex-wrap:wrap;gap:4px;font-size:clamp(1rem,1.8vw,1.35rem);margin-bottom:26px;min-height:2em;animation:fadeUp .6s .2s cubic-bezier(.16,1,.3,1) both}
+h1.name{font-family:var(--head);font-size:clamp(2.8rem,5.5vw,4.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:18px;}
+.role-line{display:flex;align-items:center;flex-wrap:wrap;gap:4px;font-size:clamp(1rem,1.8vw,1.35rem);margin-bottom:26px;min-height:2em;}
 .role-prefix{color:var(--muted);font-family:var(--mono)}
 #typed{color:var(--cyan);font-family:var(--mono);font-weight:500}
 .cursor{color:var(--cyan);font-family:var(--mono);animation:blink 1s step-end infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.summary{font-size:15.5px;line-height:1.78;color:var(--text2);max-width:500px;margin-bottom:26px;animation:fadeUp .6s .3s cubic-bezier(.16,1,.3,1) both}
-.meta{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--text2);margin-bottom:34px;animation:fadeUp .6s .35s cubic-bezier(.16,1,.3,1) both}
+.summary{font-size:15.5px;line-height:1.78;color:var(--text2);max-width:500px;margin-bottom:26px;}
+.meta{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--text2);margin-bottom:34px;}
 .meta svg{color:var(--cyan)}
 .meta-dot{color:var(--muted)}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px;animation:fadeUp .6s .4s cubic-bezier(.16,1,.3,1) both}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px;}
 .btn-p{display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-size:14px;font-weight:600;color:var(--bg);background:var(--cyan);border:none;padding:12px 24px;border-radius:8px;cursor:pointer;transition:all .2s}
 .btn-p:hover{background:#22d3ee;transform:translateY(-2px);box-shadow:0 8px 28px rgba(6,182,212,.3)}
 .btn-g{display:inline-flex;align-items:center;font-family:var(--body);font-size:14px;font-weight:500;color:var(--text);background:transparent;border:1px solid var(--border);padding:12px 24px;border-radius:8px;cursor:pointer;transition:all .2s}
 .btn-g:hover{border-color:var(--cyan);background:var(--cyan-glow-sm);transform:translateY(-2px)}
-.socials{display:flex;gap:10px;animation:fadeUp .6s .5s cubic-bezier(.16,1,.3,1) both}
+.socials{display:flex;gap:10px;}
 .soc-link{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid var(--border);color:var(--text2);transition:all .2s}
 .soc-link:hover{color:var(--cyan);border-color:var(--cyan);background:var(--cyan-glow-sm);transform:translateY(-2px)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 
 /* ── Code Window ───────────────────────────────────────────────────── */
-.hero-visual{position:relative;animation:fadeUp .7s .3s cubic-bezier(.16,1,.3,1) both}
+.hero-visual{position:relative;}
 @media(max-width:1024px){.hero-visual{display:none}}
 .code-win{background:var(--elevated);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.5)}
 .win-head{display:flex;align-items:center;gap:7px;padding:11px 16px;background:rgba(255,255,255,.025);border-bottom:1px solid var(--border-sub)}
@@ -225,16 +224,16 @@ footer{padding:28px 0;border-top:1px solid var(--border-sub)}
 <!-- NAV -->
 <nav id="navbar">
   <div class="nav-inner">
-    <div class="logo" onclick="scrollTo('hero')"><span>&lt;</span>PK<span>/&gt;</span></div>
+    <div class="logo" onclick="goTo('hero')"><span>&lt;</span>PK<span>/&gt;</span></div>
     <div class="nav-links">
-      <a onclick="scrollTo('about')" id="nav-about">About</a>
-      <a onclick="scrollTo('skills')" id="nav-skills">Skills</a>
-      <a onclick="scrollTo('experience')" id="nav-experience">Experience</a>
-      <a onclick="scrollTo('projects')" id="nav-projects">Projects</a>
-      <a onclick="scrollTo('education')" id="nav-education">Education</a>
-      <a onclick="scrollTo('contact')" id="nav-contact">Contact</a>
+      <a onclick="goTo('about')" id="nav-about">About</a>
+      <a onclick="goTo('skills')" id="nav-skills">Skills</a>
+      <a onclick="goTo('experience')" id="nav-experience">Experience</a>
+      <a onclick="goTo('projects')" id="nav-projects">Projects</a>
+      <a onclick="goTo('education')" id="nav-education">Education</a>
+      <a onclick="goTo('contact')" id="nav-contact">Contact</a>
     </div>
-    <button class="hire-btn" onclick="scrollTo('contact')">Hire Me</button>
+    <button class="hire-btn" onclick="goTo('contact')">Hire Me</button>
   </div>
 </nav>
 
@@ -253,7 +252,7 @@ footer{padding:28px 0;border-top:1px solid var(--border-sub)}
         <span class="role-prefix mono">$ role =&gt;&nbsp;</span>
         <span id="typed"></span><span class="cursor">|</span>
       </div>
-      <p class="summary">Full-stack software engineer at LTM specializing in Java, Spring Boot, and Angular. Passionate about building scalable microservices and robust banking platforms — delivering 99.9% uptime, 10K+ daily transactions, and 100% on-time sprint delivery.</p>
+      <p class="summary">Full-stack software engineer at LTIMindtree specializing in Java, Spring Boot, and Angular. Passionate about building scalable microservices and robust banking platforms — delivering 99.9% uptime, 10K+ daily transactions, and 100% on-time sprint delivery.</p>
       <div class="meta">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         Pune, Maharashtra
@@ -262,11 +261,11 @@ footer{padding:28px 0;border-top:1px solid var(--border-sub)}
         Software Engineer — Java Full-Stack
       </div>
       <div class="cta">
-        <button class="btn-p" onclick="scrollTo('projects')">
+        <button class="btn-p" onclick="goTo('projects')">
           View Projects
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
-        <button class="btn-g" onclick="scrollTo('contact')">Get in Touch</button>
+        <button class="btn-g" onclick="goTo('contact')">Get in Touch</button>
       </div>
       <div class="socials">
         <a href="https://github.com/Zetsubo0o" target="_blank" rel="noopener" class="soc-link" title="GitHub">
@@ -297,7 +296,7 @@ footer{padding:28px 0;border-top:1px solid var(--border-sub)}
     <span class="str">"Apache Camel"</span>
   );
 
-  <span class="cmt">// &#64; LTM · Pune, MH</span>
+  <span class="cmt">// &#64; LTIMindtree · Pune, MH</span>
   <span class="kw">public</span> String status() {
     <span class="kw">return</span> <span class="str">"Building &amp; Shipping 🚀"</span>;
   }
@@ -306,7 +305,7 @@ footer{padding:28px 0;border-top:1px solid var(--border-sub)}
       <div class="win-glow"></div>
     </div>
   </div>
-  <div class="scroll-ind" onclick="scrollTo('about')">
+  <div class="scroll-ind" onclick="goTo('about')">
     <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
   </div>
 </section>
@@ -318,10 +317,10 @@ footer{padding:28px 0;border-top:1px solid var(--border-sub)}
       <div class="reveal">
         <span class="section-label">About</span>
         <h2 class="section-title">Full-stack engineer<br>who <span class="accent">ships in production</span></h2>
-        <p class="about-text" style="margin-top:20px">I'm a software engineer at LTM building scalable Java microservices and Angular frontends for enterprise banking and integration platforms. I thrive on solving real production challenges — from achieving 99.9% platform uptime to slashing legacy processing times by 60%.</p>
+        <p class="about-text" style="margin-top:20px">I'm a software engineer at LTIMindtree building scalable Java microservices and Angular frontends for enterprise banking and integration platforms. I thrive on solving real production challenges — from achieving 99.9% platform uptime to slashing legacy processing times by 60%.</p>
         <p class="about-text">Recently spearheading the modernisation of IBM Integration Bus services across France, Germany, and the UK using Spring Boot and Apache Camel. I care about writing clean, testable code that ships on time and works in production.</p>
         <div class="stats">
-          <div class="stat reveal d1"><span class="stat-num">1.5+</span><span class="stat-lbl">Year Experience</span></div>
+          <div class="stat reveal d1"><span class="stat-num">1+</span><span class="stat-lbl">Year Experience</span></div>
           <div class="stat reveal d2"><span class="stat-num">3</span><span class="stat-lbl">Key Projects</span></div>
           <div class="stat reveal d3"><span class="stat-num">99.9%</span><span class="stat-lbl">Platform Uptime</span></div>
         </div>
@@ -383,7 +382,7 @@ footer{padding:28px 0;border-top:1px solid var(--border-sub)}
           <div class="job-head">
             <div>
               <div class="job-role">Software Engineer — Java Full-Stack</div>
-              <div class="job-co"><span class="job-co-name">LTM</span><span class="job-type">Full-time</span></div>
+              <div class="job-co"><span class="job-co-name">LTIMindtree</span><span class="job-type">Full-time</span></div>
             </div>
             <div class="job-info"><span class="job-period">Oct 2024 – Present</span><span class="job-loc">Pune, Maharashtra</span></div>
           </div>
@@ -580,7 +579,7 @@ function type() {
 setTimeout(type, 500);
 
 // ── Scroll helpers ────────────────────────────────────────────────────────────
-function scrollTo(id) { document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
+function goTo(id) { document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
 
 // ── Navbar scroll ─────────────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
