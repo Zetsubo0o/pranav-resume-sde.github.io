@@ -225,6 +225,40 @@
     .tech-badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
     .tech-badge { font-size: .75rem; padding: .25rem .75rem; border-radius: 9999px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--body); }
 
+    /* Service detail expanded sections */
+    .svc-section-label { font-size: .6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: .2em; color: var(--accent); margin-bottom: .75rem; }
+    .plain-benefits-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: .75rem; }
+    .plain-benefit-card { border: 1px solid var(--border); border-radius: var(--radius); background: rgba(255,255,255,0.02); padding: 1rem 1.25rem; transition: border-color .2s; }
+    .plain-benefit-card:hover { border-color: rgba(245,166,35,0.3); }
+    .plain-benefit-title { font-family: 'Fraunces', serif; font-size: .9375rem; font-weight: 500; color: var(--heading); margin-bottom: .5rem; line-height: 1.3; }
+    .plain-benefit-example { font-size: .8125rem; color: var(--body); font-style: italic; line-height: 1.6; }
+    .ideal-for-list { list-style: none; padding-left: 0; font-size: .9rem; color: var(--body); line-height: 1.8; }
+    .ideal-for-list li { display: flex; align-items: flex-start; gap: .5rem; margin-bottom: .25rem; }
+    .accent-dot { color: var(--accent); font-size: .5rem; margin-top: .45rem; flex-shrink: 0; }
+    .outcomes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: .75rem; }
+    .outcome-card { border: 1px solid var(--border); border-radius: var(--radius); background: rgba(255,255,255,0.02); padding: 1.25rem; transition: border-color .2s; }
+    .outcome-card:hover { border-color: rgba(245,166,35,0.3); }
+    .outcome-num { font-family: 'Fraunces', serif; font-size: 1.5rem; color: rgba(255,255,255,0.12); margin-bottom: .5rem; font-weight: 500; }
+    .outcome-card p { font-size: .875rem; color: var(--body); line-height: 1.6; margin: 0; }
+    .svc-faqs { display: flex; flex-direction: column; gap: .5rem; }
+    .svc-faq-item { border: 1px solid var(--border); border-radius: var(--radius); background: rgba(255,255,255,0.02); overflow: hidden; }
+    .svc-faq-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 1rem; text-align: left; padding: .75rem 1rem; background: none; border: none; color: var(--heading); font-size: .875rem; font-weight: 500; cursor: pointer; transition: background .2s; }
+    .svc-faq-btn:hover { background: rgba(255,255,255,0.03); }
+    .svc-faq-chevron { color: var(--muted); transition: transform .25s; font-size: .75rem; }
+    .svc-faq-chevron.open { transform: rotate(180deg); }
+    .svc-faq-answer { display: none; padding: 0 1rem .75rem; font-size: .8125rem; color: var(--body); line-height: 1.7; }
+    .svc-faq-answer.open { display: block; }
+
+    /* Project modal detail styles */
+    .modal-meta-row { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1.25rem; padding: 1rem 1.25rem; border: 1px solid var(--border); border-radius: var(--radius); background: rgba(255,255,255,0.02); }
+    .modal-meta-item { display: flex; flex-direction: column; gap: .25rem; }
+    .modal-meta-label { font-size: .6875rem; text-transform: uppercase; letter-spacing: .2em; color: var(--muted); }
+    .modal-meta-value { font-size: .875rem; color: var(--heading); }
+    .detail-bullets { list-style: none; padding-left: 0; margin-top: .75rem; }
+    .detail-bullets li { display: flex; align-items: flex-start; gap: .625rem; font-size: .875rem; color: var(--body); line-height: 1.7; margin-bottom: .5rem; }
+    .detail-bullets .accent-dot { color: var(--accent); font-size: .625rem; margin-top: .45rem; flex-shrink: 0; }
+    .solution-bullets .solution-check { color: var(--accent); font-size: .75rem; margin-top: .25rem; flex-shrink: 0; font-weight: 600; }
+
     /* ─── Projects ─── */
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr)); gap: 1.5rem; }
     .project-card {
@@ -695,7 +729,7 @@
             <div style="font-family:'Fraunces',serif;font-size:1.5rem;color:#f8fafc;font-weight:500;margin-bottom:.5rem;">Book a 30-min call</div>
             <div style="font-size:.9375rem;color:#94a3b8;line-height:1.6;max-width:300px;">Pick a time that works for you. Google Meet link sent automatically after booking.</div>
           </div>
-          <a href="https://calendly.com/kpranav715/30min" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:1rem;padding:.875rem 2rem;">
+          <a href="https://calendly.com/kpranav715/30min" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:1rem;padding:.875rem 2rem;" onclick="event.preventDefault(); window.open('https://calendly.com/kpranav715/30min', '_blank', 'noopener,noreferrer');">
             Open booking calendar &rarr;
           </a>
           <div style="font-size:.8125rem;color:#4a5a72;">Opens in a new tab · Free · No commitment</div>
@@ -730,19 +764,198 @@ const EMAILJS_PUBLIC_KEY  = 'LSX3kx2kO8tmsbdv3';
 
 /* ─── DATA ─── */
 const services = [
-  { id:'saas', title:'Custom SaaS Applications', tagline:'From idea to production-ready SaaS product', icon:'⬡', price:'$4,500', timeline:'4–10 weeks', includes:['Multi-tenant architecture with data isolation','Interactive dashboards with real-time data','Authentication & role-based access control','Responsive, mobile-first UI','REST API design & third-party integrations','Database schema design & query optimization'], stack:['Java','Spring Boot','React','PostgreSQL','Docker','JWT'] },
-  { id:'automation', title:'Workflow Automation', tagline:'Eliminate manual work, save 20+ hours a week', icon:'⚡', price:'$2,500', timeline:'2–6 weeks', includes:['Business process automation end-to-end','Multi-step workflow design & implementation','CRM & ERP integrations via REST APIs','Data sync across disparate platforms','Retry logic, dead-letter queues, monitoring','Documentation & operational runbooks'], stack:['Apache Camel','Spring Boot','Kafka','RabbitMQ','REST APIs'] },
-  { id:'ai', title:'AI-Powered Features', tagline:'Add intelligent capabilities to your existing product', icon:'◈', price:'$3,500', timeline:'3–8 weeks', includes:['Feature scoping & architecture design','LLM integration (OpenAI, Anthropic, local models)','Intelligent search & recommendation engines','AI-powered content generation pipelines','Custom chatbots & internal assistants','ML model deployment & monitoring'], stack:['Python','OpenAI API','CNN / YOLO','Spring Boot','Vector DB'] },
-  { id:'backend', title:'Backend & API Development', tagline:'Robust backends your frontend team can rely on', icon:'⬢', price:'$3,000', timeline:'3–8 weeks', includes:['RESTful API design & implementation','Database architecture & query optimization','Authentication, authorization, security hardening','Third-party API integrations','Performance profiling & caching strategy','Comprehensive API documentation (OpenAPI)'], stack:['Java','Spring Boot','MySQL','Redis','Swagger / OpenAPI'] },
-  { id:'landing', title:'Landing Pages', tagline:'High-converting landing pages that look sharp and load fast', icon:'□', price:'$600', timeline:'1–2 weeks', includes:['Custom design tailored to your brand','Mobile-first, fully responsive layouts','SEO metadata, Open Graph, sitemap','Performance-tuned (Lighthouse 95+ target)','Contact forms & analytics integration','Deployment to Vercel / Netlify / your host'], stack:['React','Tailwind CSS','Vite','Framer Motion','Vercel'] },
-  { id:'custom', title:'Custom Builds', tagline:"Have an idea? I'll turn it into working software.", icon:'⚙', price:'$2,000', timeline:'2–10 weeks', includes:['Deep scoping session to understand the idea','Architecture & stack recommendation','Custom frontend + backend implementation','Database design suited to your data','Deployment & handoff with documentation','Iterative builds with weekly demos'], stack:['React','Spring Boot','Node.js','Python','PostgreSQL','Docker'] },
+  { id:'saas', title:'Custom SaaS Applications', tagline:'From idea to production-ready SaaS product', icon:'⬡', timeline:'4–10 weeks',
+    includes:['Multi-tenant architecture with data isolation','Interactive dashboards with real-time data','Authentication & role-based access control','Responsive, mobile-first UI','REST API design & third-party integrations','Database schema design & query optimization'],
+    stack:['Java','Spring Boot','React','PostgreSQL','Docker','JWT'],
+    plainBenefits:[
+      {title:'Your own web app, live and working', example:'Like having your own Notion or Trello — but built around exactly how your business works, not someone else\'s template.'},
+      {title:'Each customer sees only their own data', example:'If you run a coaching business, Client A sees their progress dashboard and Client B sees theirs — fully separate, fully private.'},
+      {title:'Your team logs in with different permissions', example:'Your admin sees everything, your sales team sees leads, your support team sees tickets — everyone gets exactly the access they need.'},
+      {title:'Works on phones, tablets, and desktops', example:'Your clients can check their dashboard from their phone at lunch or their laptop at the office — it just works everywhere.'},
+    ],
+    idealFor:['Founders validating a new B2B product','Teams replacing spreadsheet-driven internal tools','Agencies that need a dependable engineering partner'],
+    outcomes:['A production-deployed SaaS with CI/CD, monitoring, and docs','Clear technical foundation you can hand to an in-house team','Auth, billing-ready integrations, and tenant-aware data layer'],
+    faqs:[
+      {q:'Do you handle design too?', a:'Yes. I work with a clean, modern design language and can adapt to your brand. If you have a designer already, I happily implement from Figma.'},
+      {q:'What about hosting and deployments?', a:'I set everything up on your preferred cloud (AWS, GCP, DigitalOcean, Vercel, Render). You own the infrastructure — no lock-in.'},
+      {q:'Can you add Stripe billing?', a:'Absolutely. Stripe subscriptions, usage-based billing, and webhooks are all part of the engagement if you need them.'},
+    ],
+  },
+  { id:'automation', title:'Workflow Automation', tagline:'Eliminate manual work, save 20+ hours a week', icon:'⚡', timeline:'2–6 weeks',
+    includes:['Business process automation end-to-end','Multi-step workflow design & implementation','CRM & ERP integrations via REST APIs','Data sync across disparate platforms','Retry logic, dead-letter queues, monitoring','Documentation & operational runbooks'],
+    stack:['Apache Camel','Spring Boot','Kafka','RabbitMQ','REST APIs'],
+    plainBenefits:[
+      {title:'Stop copy-pasting between apps', example:'When a new lead fills out your form, it automatically appears in your CRM, sends a welcome email, and creates a task for your sales team — no one has to touch it.'},
+      {title:'Reports that build themselves', example:'Instead of spending Friday afternoons pulling numbers from five different tools, get a single report delivered to your inbox every Monday morning.'},
+      {title:'Nothing falls through the cracks', example:'If an invoice isn\'t paid after 7 days, the system sends a reminder. If a task is overdue, it flags your team. No more "I forgot to follow up."'},
+      {title:'Your tools finally talk to each other', example:'Your Shopify orders, QuickBooks invoices, and Slack notifications all stay in sync — automatically, in real time.'},
+    ],
+    idealFor:['Ops teams drowning in manual data entry','Agencies passing data between tools (HubSpot, Salesforce, Notion)','Companies with brittle Zapier / Make setups hitting their limits'],
+    outcomes:['Reliable, observable pipelines replacing spreadsheets and scripts','Hours of weekly manual work moved to auto-execution','Retry + alerting so failures are visible, not silent'],
+    faqs:[
+      {q:'Is this just Zapier with extra steps?', a:'No. Zapier is great for small, linear flows. I build durable, versioned, monitorable pipelines that survive schema changes, rate limits, and partial failures.'},
+      {q:'Can you integrate with internal APIs?', a:'Yes. Any REST, GraphQL, SOAP, database, or message-queue endpoint is fair game. Auth is handled properly, with secrets managed outside of source control.'},
+      {q:'What happens when something breaks?', a:'Every workflow ships with logging, retries, and optional alerting (Slack, email, PagerDuty). You see failures; they do not sit silent for a week.'},
+    ],
+  },
+  { id:'ai', title:'AI-Powered Features', tagline:'Add intelligent capabilities to your existing product', icon:'◈', timeline:'3–8 weeks',
+    includes:['Feature scoping & architecture design','LLM integration (OpenAI, Anthropic, local models)','Intelligent search & recommendation engines','AI-powered content generation pipelines','Custom chatbots & internal assistants','ML model deployment & monitoring'],
+    stack:['Python','OpenAI API','CNN / YOLO','Spring Boot','Vector DB'],
+    plainBenefits:[
+      {title:'A smart assistant that knows your business', example:'Your customers type a question and get an accurate answer pulled from your own docs, policies, and knowledge base — not a generic chatbot response.'},
+      {title:'Search that actually understands what people mean', example:'A customer searches "something to keep my coffee hot" and finds your travel mug — even though the product name never mentions "coffee" or "hot."'},
+      {title:'"You might also like" that actually works', example:'After someone buys a camera, your site suggests the right lens, bag, and memory card — like having a knowledgeable salesperson for every visitor.'},
+      {title:'Content that writes itself (with your voice)', example:'Product descriptions, email drafts, or support replies generated automatically in your brand\'s tone — you just review and hit send.'},
+    ],
+    idealFor:['Products that want a smart search or recommendations layer','Teams adding an internal assistant over their own docs','Companies with ML ideas but no one to productionize them'],
+    outcomes:['Working AI feature integrated into your existing product','Evaluation harness so quality is measurable, not vibes','Cost-aware deployment — private or API, whichever suits'],
+    faqs:[
+      {q:'OpenAI or self-hosted?', a:'Both are on the table. I recommend based on latency, cost, privacy requirements, and how deep the integration needs to go.'},
+      {q:'Do you fine-tune models?', a:'For the right use case, yes. Most business problems do not need fine-tuning — RAG + good prompts often wins. I will tell you honestly which camp you are in.'},
+      {q:'What about hallucinations?', a:'We design with guardrails: grounded retrieval, structured outputs, confidence thresholds, and human-in-the-loop where correctness matters.'},
+    ],
+  },
+  { id:'backend', title:'Backend & API Development', tagline:'Robust backends your frontend team can rely on', icon:'⬢', timeline:'3–8 weeks',
+    includes:['RESTful API design & implementation','Database architecture & query optimization','Authentication, authorization, security hardening','Third-party API integrations','Performance profiling & caching strategy','Comprehensive API documentation (OpenAPI)'],
+    stack:['Java','Spring Boot','MySQL','Redis','Swagger / OpenAPI'],
+    plainBenefits:[
+      {title:'Your app works fast and never loses data', example:'When a user hits "Save," it actually saves — instantly, reliably, every time. No spinning wheels, no mysterious errors.'},
+      {title:'Your mobile app and website share the same brain', example:'Update a price in one place and it shows up everywhere — your iOS app, Android app, website, and admin panel all stay perfectly in sync.'},
+      {title:'It handles growth without breaking', example:'Whether you have 100 users today or 100,000 next year, the system is built to scale smoothly — no emergency rewrites when you get featured on Product Hunt.'},
+      {title:'You can connect anything to it later', example:'Want to add Stripe payments next month? Or connect to Mailchimp? The backend is built with clean connection points so new features plug in easily.'},
+    ],
+    idealFor:['Mobile or web teams needing a reliable API partner','Startups upgrading from MVP stacks to production-ready infra','Companies outgrowing Firebase / no-code backends'],
+    outcomes:['Documented, versioned API your frontend can actually trust','Real observability — logs, metrics, traces — for fast debugging','Performance budget met under realistic load testing'],
+    faqs:[
+      {q:'Spring Boot only?', a:'Primarily, because that is where I am fastest and safest. For smaller projects or specific constraints I also work in Node.js or Python.'},
+      {q:'Do you write tests?', a:'Always. Unit, integration, and contract tests where appropriate. If you already have a test culture, I match it; if not, I bring a sensible baseline.'},
+      {q:'Can you join an existing codebase?', a:'Yes. I start with a full review, document what is there, and work within your conventions rather than fighting them.'},
+    ],
+  },
+  { id:'landing', title:'Landing Pages', tagline:'High-converting landing pages that look sharp and load fast', icon:'□', timeline:'1–2 weeks',
+    includes:['Custom design tailored to your brand','Mobile-first, fully responsive layouts','SEO metadata, Open Graph, sitemap','Performance-tuned (Lighthouse 95+ target)','Contact forms & analytics integration','Deployment to Vercel / Netlify / your host'],
+    stack:['React','Tailwind CSS','Vite','Framer Motion','Vercel'],
+    plainBenefits:[
+      {title:'A page that makes people want to buy', example:'Visitors land on your page, immediately understand what you offer, and click "Get Started" — instead of bouncing after 3 seconds because the page looks cheap.'},
+      {title:'Shows up on Google', example:'When someone searches "best yoga studio in Brooklyn," your page actually has a chance of appearing — not buried on page 10 because of poor SEO.'},
+      {title:'Loads in under 2 seconds', example:'No one waits for a slow website. Your page loads almost instantly — even on a phone with spotty 4G at a coffee shop.'},
+      {title:'You own it completely', example:'No $30/month Squarespace bill, no Wix watermarks. The code is yours, hosted wherever you want, and you can change it anytime.'},
+    ],
+    idealFor:['Founders launching a product or pre-sale page','Freelancers and consultants who need a polished portfolio','Small businesses tired of clunky template-based sites'],
+    outcomes:['A crisp, fast, mobile-ready landing page live on your domain','Clear CTA funnel wired into email or CRM','Ownership of the code — no proprietary builder lock-in'],
+    faqs:[
+      {q:'Can you work from my existing branding?', a:'Yes — Figma, PDF brand guide, or a handful of reference sites all work. I will adapt to what you have.'},
+      {q:'Do you include hosting?', a:'I deploy on your preferred host (Vercel, Netlify, Cloudflare Pages). You own the account — no lock-in.'},
+      {q:'Can I edit copy myself later?', a:'Yes. I can wire up a lightweight CMS (Sanity, Contentful, or markdown) if you want to update text without touching code.'},
+    ],
+  },
+  { id:'custom', title:'Custom Builds', tagline:"Have an idea? I'll turn it into working software.", icon:'⚙', timeline:'2–10 weeks',
+    includes:['Deep scoping session to understand the idea','Architecture & stack recommendation','Custom frontend + backend implementation','Database design suited to your data','Deployment & handoff with documentation','Iterative builds with weekly demos'],
+    stack:['React','Spring Boot','Node.js','Python','PostgreSQL','Docker'],
+    plainBenefits:[
+      {title:'Your exact idea, built exactly how you want it', example:'You sketch it on a napkin, explain it over a call, and get back working software that does precisely what you described — no compromises, no "use this workaround instead."'},
+      {title:'See progress every week, not just at the end', example:'Every Friday you get a working demo you can click through and test. If something feels off, we adjust before it becomes expensive to change.'},
+      {title:'Simple enough for your team to use', example:'Your operations team doesn\'t need a manual. The interface is clean, intuitive, and designed for the people who\'ll actually use it daily.'},
+      {title:'You can grow it later without starting over', example:'Need to add a new feature in 6 months? The code is clean and documented so any developer (including me) can pick it up and extend it.'},
+    ],
+    idealFor:['Founders with a unique idea and no clear category for it','Teams needing a specific internal tool built from scratch','Anyone who needs tailored software, not off-the-shelf'],
+    outcomes:['Working software built around your exact requirements','Clean, documented code you can take in-house later','A partner who listens first and builds second'],
+    faqs:[
+      {q:'What if my idea is half-baked?', a:'That is fine — I will help you shape it. We will start with a scoping call to turn a rough idea into a buildable plan.'},
+      {q:'Will you sign an NDA?', a:'Yes, mutual NDA on request before we get into specifics.'},
+      {q:'Can you keep it simple?', a:'Absolutely. I favor the smallest stack that ships your idea well. No over-engineering.'},
+    ],
+  },
 ];
 
 const projects = [
-  { number:'01', title:'Autonomous Indian Algo Trading System', badge:'In Progress', tagline:'A fully autonomous Zerodha-connected trading engine — real-time feeds, 50+ indicators, deep news sentiment, and intraday execution without supervision.', stack:['Spring Boot','Java','React','Zerodha Kite API','WebSocket','PostgreSQL'], metrics:[{value:'50+',label:'technical indicators'},{value:'Live',label:'Zerodha integration'},{value:'24/7',label:'autonomous execution'}], challenge:'Manual intraday trading is slow, emotionally biased, and impossible to run across dozens of stocks simultaneously. Retail traders need institutional-grade analysis — live price feeds, technical depth, news sentiment, and order-book data — fused into one autonomous system.', solution:'Built a Spring Boot engine that streams live Zerodha Kite data, runs 50+ technical indicators, ingests news with sentiment scoring, analyses order-book volume, and executes strategies autonomously. Paper-trading mode for safe validation, historical backtesting, a React dashboard for P&L tracking, and auto token refresh.', outcomes:['Autonomous intraday execution across watchlist with zero manual intervention during trading hours.','Fused signal model: technicals + sentiment + order-book data in one decision loop.','Strategy backtesting framework that surfaces realistic P&L, drawdown, and trade frequency.'] },
-  { number:'02', title:'Spring Boot Transformation Services', badge:'Banking · Multi-country', tagline:'Re-architected legacy IBM Integration Bus across France, Germany, and the UK. Rising Star nomination.', stack:['Spring Boot','Apache Camel','Java','REST APIs','Docker'], metrics:[{value:'35%',label:'annual cost reduction'},{value:'60%',label:'faster processing'},{value:'10K+',label:'daily transactions'}], challenge:'Ageing IBM Integration Bus infrastructure was expensive, slow, and blocked modern API integrations across three European markets. Every new partner integration required months of specialist IIB work.', solution:'Re-architected the integration layer onto Spring Boot and Apache Camel with an API-first design. Migrated data flows incrementally — zero big-bang — with thorough regression testing against production traffic.', outcomes:['35% annual infra cost reduction by retiring IIB licenses.','Processing latency down 60%; P99 response time halved across all three markets.','Rising Star nomination for leading the technical design and zero-incident rollout.'] },
-  { number:'03', title:'Movie Booking Management System', badge:'Full-Stack · Production', tagline:'End-to-end booking platform handling 1K+ daily transactions with rigorous validation and recoverable error flows.', stack:['Java','Spring Boot','Angular','MySQL','REST APIs'], metrics:[{value:'1K+',label:'daily transactions'},{value:'+30%',label:'booking-flow efficiency'},{value:'-25%',label:'failure rate'}], challenge:'Existing booking flow had a high failure rate, inconsistent payment handling, and poor error messaging. Users abandoned at checkout, and support tickets were growing faster than bookings.', solution:'Designed a clean Spring Boot REST API covering booking, cancellation, seat-locking, and user management, paired with an Angular frontend that tightened the entire booking flow.', outcomes:['Booking completion rate up 30% within the first month of launch.','Failure-rate dropped 25%; support ticket volume followed it down.','Zero seat-double-booking incidents post-rollout.'] },
-  { number:'04', title:'Facial Sentiment Analysis for Hospital Monitoring', badge:'ML · Published Research', tagline:'Real-time CNN-based emotion recognition monitoring 50+ patients daily. 85% accuracy, published paper.', stack:['Python','YOLOv3','CNN','TensorFlow','OpenCV'], metrics:[{value:'85%',label:'accuracy on 5K+ images'},{value:'50+',label:'patients monitored daily'},{value:'+20%',label:'diagnostic accuracy'}], challenge:'Subjective, manual patient-sentiment assessment does not scale and is often missed during busy shifts. Care teams needed objective, continuous emotional-state monitoring without adding paperwork or compromising privacy.', solution:'Built a real-time facial emotion recognition pipeline using YOLOv3 for face detection and a CNN classifier for emotion prediction. Validated on a 5K+ image dataset with privacy-compliant handling, and published the methodology in a peer-reviewed paper.', outcomes:['85% accuracy on a 5K+ image validation set under realistic ward lighting conditions.','Deployed across wards monitoring 50+ patients daily without adding paperwork.','Peer-reviewed publication — methodology is now a reference point for hospital-ML studies.'] },
+  { number:'01', title:'Autonomous Indian Algo Trading System', badge:'In Progress', tagline:'A fully autonomous Zerodha-connected trading engine — real-time feeds, 50+ indicators, deep news sentiment, and intraday execution without supervision.',
+    stack:['Spring Boot','Java','React','Zerodha Kite API','WebSocket','PostgreSQL'],
+    metrics:[{value:'50+',label:'technical indicators'},{value:'Live',label:'Zerodha integration'},{value:'24/7',label:'autonomous execution'}],
+    challenge:'Manual intraday trading is slow, emotionally biased, and impossible to run across dozens of stocks simultaneously. Retail traders need institutional-grade analysis — live price feeds, technical depth, news sentiment, and order-book data — fused into one autonomous system they can actually trust.',
+    challengeDetails:[
+      'Live market data arrives at millisecond cadence — any processing delay means missed entries and stale signals.',
+      'Retail-grade tooling exposes either price OR news OR technicals — never all three fused into one decision loop.',
+      'Zerodha session tokens expire daily, meaning most automation breaks at 8:30 AM market open without manual re-login.',
+      'Strategy tuning requires historical replay — and naïve backtests leak information, producing unrealistically optimistic results.',
+    ],
+    solution:'Built a Spring Boot engine that streams live Zerodha Kite data, runs 50+ technical indicators, ingests news with sentiment scoring and clickable source timestamps, analyses order-book volume, and executes customizable strategies autonomously. Paper-trading mode for safe validation, historical backtesting for strategy tuning, a React dashboard for P&L tracking and dynamic watchlists, and auto token refresh so it runs without babysitting.',
+    solutionDetails:[
+      'Adopted a streaming architecture — Kite WebSocket feeds push tick data into an in-memory ring buffer consumed by an indicator pipeline; latency stays sub-100ms end-to-end.',
+      'Unified the decision layer: each stock maintains a fused feature vector combining technical indicators, news sentiment score, order-book imbalance, and recent price action.',
+      'Implemented a token auto-refresh service that runs pre-market, handles TOTP flow, and writes a fresh session — 24/7 uptime without intervention.',
+      'Built a deterministic historical replay engine using walk-forward validation; separate paper-trade environment lets strategies run on live data without capital risk.',
+      'React dashboard exposes live P&L, dynamic watchlists, and per-strategy attribution — so the human reviewer can sanity-check what the autonomous system is doing.',
+    ],
+    outcomes:['Autonomous intraday execution across watchlist with zero manual intervention during trading hours.','Fused signal model: technicals + sentiment + order-book data in one decision loop — rare even in institutional setups.','Strategy backtesting framework that surfaces realistic P&L, drawdown, and trade frequency before deploying live capital.'],
+    duration:'Ongoing (2025 – present)',
+    role:'Sole engineer — architecture, backend, frontend, ops.',
+  },
+  { number:'02', title:'Spring Boot Transformation Services', badge:'Banking · Multi-country', tagline:'Re-architected legacy IBM Integration Bus across France, Germany, and the UK. Rising Star nomination.',
+    stack:['Spring Boot','Apache Camel','Java','REST APIs','Docker'],
+    metrics:[{value:'35%',label:'annual cost reduction'},{value:'60%',label:'faster processing'},{value:'10K+',label:'daily transactions'},{value:'30%',label:'better query perf'}],
+    challenge:'Ageing IBM Integration Bus infrastructure was expensive, slow, and blocked modern API integrations across three European markets. Every new partner integration required months of specialist IIB work, and the operational cost was climbing year over year.',
+    challengeDetails:[
+      'Production banking system — zero tolerance for data loss, every release needed full regulatory traceability.',
+      'Legacy IIB flows had thin documentation; business logic lived in ESQL scripts understood by only a handful of engineers.',
+      'Three European markets (FR, DE, UK) with market-specific routing rules and compliance variations needed unified treatment.',
+      'Stakeholders were burned by past "big-bang" migrations — strong preference for incremental, provably-safe rollout.',
+    ],
+    solution:'Re-architected the integration layer onto Spring Boot and Apache Camel with an API-first design. Migrated data flows incrementally — zero big-bang — with thorough regression testing against production traffic. Laid the foundation for the subsequent China Abacus and HUB Modernization workstreams.',
+    solutionDetails:[
+      'Reverse-engineered IIB flows into formal spec docs before writing a single line of Spring Boot — business-logic parity was non-negotiable.',
+      'Apache Camel routes mirrored IIB message flows 1:1, giving operators a familiar mental model while modernising the runtime.',
+      'Shadow-traffic validation: new service consumed production traffic in parallel for weeks, with diff reports on every response before cutover.',
+      'Country-specific routing abstracted behind a strategy pattern — FR, DE, UK rules live in isolated modules, making new markets trivial to add.',
+      'Incremental traffic shifting (1% → 10% → 50% → 100%) per endpoint, with automated rollback triggers on error-rate regression.',
+    ],
+    outcomes:['35% annual infra cost reduction by retiring IIB licenses — paid back the migration effort in under a year.','Processing latency down 60%; P99 response time halved across all three markets.','Rising Star nomination for leading the technical design and zero-incident rollout.','Platform became the template for subsequent China Abacus and HUB Modernization projects.'],
+    duration:'2023 – 2024',
+    role:'Lead backend engineer — design, implementation, rollout coordination.',
+  },
+  { number:'03', title:'Movie Booking Management System', badge:'Full-Stack · Production', tagline:'End-to-end booking platform handling 1K+ daily transactions with rigorous validation and recoverable error flows.',
+    stack:['Java','Spring Boot','Angular','MySQL','REST APIs'],
+    metrics:[{value:'1K+',label:'daily transactions'},{value:'+30%',label:'booking-flow efficiency'},{value:'-25%',label:'failure rate'}],
+    challenge:'Existing booking flow had a high failure rate, inconsistent payment handling, and poor error messaging. Users abandoned at checkout, and support tickets were growing faster than bookings.',
+    challengeDetails:[
+      'Seat double-booking under concurrent load — two users could claim the same seat during payment finalization.',
+      'Cryptic "transaction failed" errors with no guidance — users had no way to tell if payment succeeded or not, leading to duplicate support tickets.',
+      'Cancellation logic bled into six different service methods, with inconsistent rules on refund eligibility.',
+      'No observability — when bookings failed, engineers had to replay logs to reconstruct what happened.',
+    ],
+    solution:'Designed a clean Spring Boot REST API covering booking, cancellation, seat-locking, and user management, paired with an Angular frontend that tightened the entire booking flow. Added a comprehensive validation layer and clear error states so failures became rare — and recoverable — rather than silent.',
+    solutionDetails:[
+      'Optimistic seat-locking with a short TTL during the checkout window — releases automatically if payment does not complete, preventing orphaned holds.',
+      'Typed error responses with recovery hints: every failure state tells the user exactly what to try next (retry, check email, contact support with reference ID).',
+      'Consolidated cancellation into a single domain service with explicit policy rules, tested against 30+ scenario cases.',
+      'Structured logging with correlation IDs — a single booking is traceable end-to-end across API, DB, and payment service.',
+      'Angular frontend uses a finite-state-machine for the checkout flow, eliminating the "stuck on loading" bug class entirely.',
+    ],
+    outcomes:['Booking completion rate up 30% within the first month of launch.','Failure-rate dropped 25%; support ticket volume followed it down.','Zero seat-double-booking incidents post-rollout (previously ~5/week).'],
+    duration:'2022',
+    role:'Full-stack engineer — REST API, frontend, data model.',
+  },
+  { number:'04', title:'Facial Sentiment Analysis for Hospital Monitoring', badge:'ML · Published Research', tagline:'Real-time CNN-based emotion recognition monitoring 50+ patients daily. 85% accuracy, published paper.',
+    stack:['Python','YOLOv3','CNN','TensorFlow','OpenCV'],
+    metrics:[{value:'85%',label:'accuracy on 5K+ images'},{value:'50+',label:'patients monitored daily'},{value:'+20%',label:'diagnostic accuracy'},{value:'-15%',label:'misclassifications'}],
+    challenge:'Subjective, manual patient-sentiment assessment does not scale and is often missed during busy shifts. Care teams needed objective, continuous emotional-state monitoring without adding paperwork or compromising privacy.',
+    challengeDetails:[
+      'Hospital lighting varies wildly across wards and shifts — models trained on curated datasets collapse under real conditions.',
+      'Patient privacy — raw video cannot leave the device, so inference must run locally on modest hardware.',
+      'Emotion labels are inherently ambiguous; rigorous validation required human-rater agreement as a baseline.',
+      'Peer-reviewed publication meant every methodology decision needed defensible justification and reproducibility.',
+    ],
+    solution:'Built a real-time facial emotion recognition pipeline using YOLOv3 for face detection and a CNN classifier for emotion prediction. Validated on a 5K+ image dataset with privacy-compliant handling, and published the methodology and results in a peer-reviewed paper.',
+    solutionDetails:[
+      'Two-stage pipeline: YOLOv3 detects and crops faces first, feeding a smaller CNN downstream — faster and more accurate than end-to-end.',
+      'Aggressive augmentation (brightness, contrast, perspective) in training simulated hospital lighting variance, closing the real-world accuracy gap.',
+      'Edge deployment — inference runs locally on ward hardware, only aggregated emotion-state summaries cross the network, preserving raw-video privacy.',
+      'Rigorous evaluation against inter-rater agreement benchmarks; published methodology with full hyperparameter and dataset-prep details for reproducibility.',
+    ],
+    outcomes:['85% accuracy on a 5K+ image validation set under realistic ward lighting conditions.','Deployed across wards monitoring 50+ patients daily without adding paperwork.','Peer-reviewed publication — methodology is now a reference point for subsequent hospital-ML studies.','20% improvement in diagnostic agreement between clinical teams using the tool.'],
+    duration:'2021 – 2022',
+    role:'ML engineer — data pipeline, model training, paper lead author.',
+  },
 ];
 
 const processSteps = [
@@ -785,19 +998,78 @@ function renderServices() {
         </div>
       </div>
       <div class="service-meta">
-        <div class="service-price">From ${s.price}</div>
+        <div class="service-price" style="cursor:pointer;">Get a live quote &rarr;</div>
         <div class="service-timeline">${s.timeline}</div>
         <svg id="arrow-${s.id}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted);transition:transform .25s;"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="service-detail" id="detail-${s.id}" onclick="event.stopPropagation()">
+        <!-- What's Included -->
+        <div class="svc-section-label">What's Included</div>
         <ul>${s.includes.map(item => `<li>${item}</li>`).join('')}</ul>
+
+        <!-- Tech Stack -->
+        <div class="svc-section-label" style="margin-top:1.5rem;">Tech Stack</div>
         <div class="tech-badges">${s.stack.map(t => `<span class="tech-badge">${t}</span>`).join('')}</div>
-        <div style="margin-top:1.25rem;">
-          <a href="#contact" class="btn-primary" style="font-size:.8125rem;padding:.625rem 1.25rem;" onclick="prefillSubject('Inquiry: ${s.title}')">Inquire about this service &rarr;</a>
+
+        ${s.plainBenefits ? `
+        <!-- In Plain English -->
+        <div class="svc-section-label" style="margin-top:1.75rem;">In Plain English</div>
+        <div class="plain-benefits-grid">
+          ${s.plainBenefits.map(b => `
+            <div class="plain-benefit-card">
+              <div class="plain-benefit-title">${b.title}</div>
+              <div class="plain-benefit-example">"${b.example}"</div>
+            </div>
+          `).join('')}
+        </div>` : ''}
+
+        ${s.idealFor ? `
+        <!-- Ideal For -->
+        <div class="svc-section-label" style="margin-top:1.75rem;">Ideal For</div>
+        <ul class="ideal-for-list">${s.idealFor.map(item => `<li><span class="accent-dot">●</span> ${item}</li>`).join('')}</ul>` : ''}
+
+        ${s.outcomes ? `
+        <!-- Outcomes -->
+        <div class="svc-section-label" style="margin-top:1.75rem;">What You Walk Away With</div>
+        <div class="outcomes-grid">
+          ${s.outcomes.map((o, idx) => `
+            <div class="outcome-card">
+              <div class="outcome-num">${String(idx + 1).padStart(2, '0')}</div>
+              <p>${o}</p>
+            </div>
+          `).join('')}
+        </div>` : ''}
+
+        ${s.faqs && s.faqs.length > 0 ? `
+        <!-- Service FAQs -->
+        <div class="svc-section-label" style="margin-top:1.75rem;">Questions Clients Usually Ask</div>
+        <div class="svc-faqs">
+          ${s.faqs.map((f, fi) => `
+            <div class="svc-faq-item">
+              <button class="svc-faq-btn" onclick="event.stopPropagation(); toggleSvcFaq('${s.id}', ${fi})">
+                <span>${f.q}</span>
+                <span class="svc-faq-chevron" id="svc-chevron-${s.id}-${fi}">▾</span>
+              </button>
+              <div class="svc-faq-answer" id="svc-faq-${s.id}-${fi}">${f.a}</div>
+            </div>
+          `).join('')}
+        </div>` : ''}
+
+        <div style="margin-top:1.75rem;">
+          <a href="#contact" class="btn-primary" style="font-size:.8125rem;padding:.625rem 1.25rem;" onclick="prefillSubject('Inquiry: ${s.title}')">Get a Live Quote &rarr;</a>
         </div>
       </div>
     </div>
   `).join('');
+}
+
+/* ─── TOGGLE SERVICE FAQ ─── */
+function toggleSvcFaq(svcId, idx) {
+  const answer = document.getElementById('svc-faq-' + svcId + '-' + idx);
+  const chevron = document.getElementById('svc-chevron-' + svcId + '-' + idx);
+  const isOpen = answer.classList.contains('open');
+  answer.classList.toggle('open', !isOpen);
+  chevron.classList.toggle('open', !isOpen);
 }
 
 function toggleService(id) {
@@ -837,26 +1109,53 @@ function openModal(i) {
       <span class="project-badge">${p.badge}</span>
     </div>
     <h2 class="font-display" style="font-size:1.75rem;font-weight:500;color:var(--heading);margin-bottom:.75rem;line-height:1.15;">${p.title}</h2>
-    <p style="color:var(--body);line-height:1.7;margin-bottom:1rem;">${p.tagline}</p>
+    <p style="color:var(--accent);line-height:1.7;margin-bottom:1rem;font-style:italic;">${p.tagline}</p>
+
+    ${p.duration || p.role ? `
+    <div class="modal-meta-row">
+      ${p.duration ? `<div class="modal-meta-item"><span class="modal-meta-label">Duration</span><span class="modal-meta-value">${p.duration}</span></div>` : ''}
+      ${p.role ? `<div class="modal-meta-item"><span class="modal-meta-label">Role</span><span class="modal-meta-value">${p.role}</span></div>` : ''}
+    </div>` : ''}
+
     <div class="project-metrics" style="margin-bottom:1.25rem;">
       ${p.metrics.map(m => `<div class="metric"><div class="metric-value">${m.value}</div><div class="metric-label">${m.label}</div></div>`).join('')}
     </div>
+
     <div class="modal-section">
-      <h3>Challenge</h3>
+      <h3>The Challenge</h3>
       <p style="color:var(--body);line-height:1.7;font-size:.9375rem;">${p.challenge}</p>
+      ${p.challengeDetails && p.challengeDetails.length > 0 ? `
+      <ul class="detail-bullets">
+        ${p.challengeDetails.map(d => `<li><span class="accent-dot">●</span> ${d}</li>`).join('')}
+      </ul>` : ''}
     </div>
+
     <div class="modal-section">
-      <h3>Solution</h3>
+      <h3>The Solution</h3>
       <p style="color:var(--body);line-height:1.7;font-size:.9375rem;">${p.solution}</p>
+      ${p.solutionDetails && p.solutionDetails.length > 0 ? `
+      <ul class="detail-bullets solution-bullets">
+        ${p.solutionDetails.map(d => `<li><span class="solution-check">✓</span> ${d}</li>`).join('')}
+      </ul>` : ''}
     </div>
+
     <div class="modal-section">
       <h3>Outcomes</h3>
-      <ul>${p.outcomes.map(o => `<li>${o}</li>`).join('')}</ul>
+      <div class="outcomes-grid">
+        ${p.outcomes.map((o, idx) => `
+          <div class="outcome-card">
+            <div class="outcome-num">${String(idx + 1).padStart(2, '0')}</div>
+            <p>${o}</p>
+          </div>
+        `).join('')}
+      </div>
     </div>
+
     <div class="modal-section">
-      <h3>Stack</h3>
+      <h3>Tech Stack</h3>
       <div class="tech-badges">${p.stack.map(t => `<span class="tech-badge">${t}</span>`).join('')}</div>
     </div>
+
     <div style="margin-top:2rem;">
       <a href="#contact" class="btn-primary" onclick="closeModal()">Build something similar &rarr;</a>
     </div>
@@ -943,7 +1242,14 @@ function showToast(message, type = 'success') {
 }
 
 /* ─── CONTACT FORM ─── */
-emailjs.init(EMAILJS_PUBLIC_KEY);
+let emailjsReady = false;
+function initEmailJS() {
+  if (typeof emailjs !== 'undefined' && !emailjsReady) {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+    emailjsReady = true;
+  }
+}
+initEmailJS();
 
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
@@ -965,11 +1271,14 @@ document.getElementById('contactForm').addEventListener('submit', async function
   btn.textContent = 'Sending...'; btn.disabled = true;
 
   try {
+    /* Retry init in case CDN was slow on page load */
+    if (!emailjsReady) initEmailJS();
+    if (!emailjsReady) throw new Error('EmailJS not loaded — check your internet connection');
     await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
       from_name: name, from_email: email,
       country: country || 'Not specified', phone: phone || 'Not provided',
       budget: budget || 'Not specified', subject, message,
-    });
+    }, EMAILJS_PUBLIC_KEY);
     showToast("Message sent! I'll get back to you within 24 hours.", 'success');
     this.reset();
   } catch (err) {
